@@ -14,7 +14,7 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "PRIVATE_API_KEY_VALUE", '"8575e4f42728769b2ac82bc12c054d9388a7624d"'
+            buildConfigField "String", "PRIVATE_API_KEY_VALUE", '"5824724f08480d75d54491e26f16ca5e"'
             buildConfigField "String", "PUBLIC_API_KEY_VALUE", '"0e1faa7960cc642308378a9062ac5e5d"'
             buildConfigField "String", "MARVEL_BASE_URL", '"http://gateway.marvel.com/public/"'
 
@@ -22,7 +22,7 @@ android {
 
         release {
             minifyEnabled false
-            buildConfigField "String", "PRIVATE_API_KEY_VALUE", '"8575e4f42728769b2ac82bc12c054d9388a7624d"'
+            buildConfigField "String", "PRIVATE_API_KEY_VALUE", '"5824724f08480d75d54491e26f16ca5e"'
             buildConfigField "String", "PUBLIC_API_KEY_VALUE", '"0e1faa7960cc642308378a9062ac5e5d"'
             buildConfigField "String", "MARVEL_BASE_URL", '"http://gateway.marvel.com/public/"'
 
