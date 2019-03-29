@@ -8,4 +8,11 @@
     <dimen name="super_hero_detail_header_height">300dp</dimen>
     <dimen name="title_text_size">20dp</dimen>
     <dimen name="body_text_size">16dp</dimen>
+    <dimen name="margin_min_dialogFragment">300dp</dimen>
+    <dimen name="margin_minHeight_dialogFragment">300dp</dimen>
+    <dimen name="margin_minHeight_description_dialogFragment">150dp</dimen>
+    <dimen name="margin_text_info_character">4dp</dimen>
+    <dimen name="margin_Top_text_info_character">16dp</dimen>
+    <dimen name="text_name_size">30sp</dimen>
+    <dimen name="text_description_size">15sp</dimen>
 </resources>
