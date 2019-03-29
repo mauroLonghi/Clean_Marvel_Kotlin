@@ -31,7 +31,5 @@ class CharacterFragmentPresenter(view: CharecterFragmentView, private val getCha
                     view.hideLoading()
                     view.showToastNoItemToShow()
                 })
-
     }
-
 }

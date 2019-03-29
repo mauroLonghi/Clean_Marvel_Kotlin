@@ -13,8 +13,6 @@ import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.CharecterFragmentVie
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -37,12 +35,6 @@ class CharacterFragment : DialogFragment() {
             fragment.arguments = args
             return fragment
         }
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val view = super.onCreateDialog(savedInstanceState)
-
-        return view
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

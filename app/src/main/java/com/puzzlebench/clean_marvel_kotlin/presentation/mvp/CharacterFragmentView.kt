@@ -10,10 +10,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_response.*
 import java.lang.ref.WeakReference
 
-const val EMPTY_FIELD = ""
-
 class CharecterFragmentView(fragment: CharacterFragment) {
     private val fragmentRef = WeakReference(fragment)
+
+    companion object{
+        private const val POINT_URL = "."
+    }
 
     fun init() {
         val fragment = fragmentRef.get()
@@ -36,15 +38,15 @@ class CharecterFragmentView(fragment: CharacterFragment) {
         val activity = fragmentRef.get()
 
         activity?.character_name?.text =
-                if (characters.name != EMPTY_FIELD) characters.name
+                if (!characters.name.isEmpty()) characters.name
                 else activity?.getString(R.string.message_no_items_to_show)
 
         activity?.character_description?.text =
-                if (characters.description != EMPTY_FIELD) characters.description
+                if (!characters.description.isEmpty()) characters.description
                 else activity?.getString(R.string.message_no_items_to_show)
 
         activity?.character_image?.getImageByUrl(
-                characters.thumbnail.path + "." + characters.thumbnail.extension
+                "${characters.thumbnail.path}${POINT_URL}${characters.thumbnail.extension}"
         )
     }
 

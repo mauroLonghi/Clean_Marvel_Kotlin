@@ -10,10 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/color_background_default_Image"
-        android:orientation="vertical"
-
-        >
-
+        android:orientation="vertical">
         <ImageView
             android:id="@+id/character_image"
             android:layout_width="wrap_content"
@@ -23,7 +20,6 @@
             android:minWidth="@dimen/margin_min_dialogFragment"
             android:minHeight="@dimen/margin_minHeight_dialogFragment"
             android:scaleType="center" />
-
         <TextView
             android:id="@+id/character_name"
             android:layout_width="match_parent"
@@ -35,7 +31,6 @@
             android:textColor="@color/color_name_character"
             android:textSize="@dimen/text_name_size"
             android:textStyle="bold" />
-
         <TextView
             android:id="@+id/character_description"
             android:layout_width="match_parent"
@@ -48,6 +43,5 @@
             android:minHeight="@dimen/margin_minHeight_description_dialogFragment"
             android:textColor="@color/color_text_description"
             android:textSize="@dimen/text_description_size" />
-
     </LinearLayout>
 </HorizontalScrollView>
