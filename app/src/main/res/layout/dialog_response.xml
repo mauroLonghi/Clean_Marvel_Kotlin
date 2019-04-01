@@ -1,47 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_vertical">
+    android:background="@color/color_backgroung_recycler"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/color_background_default_Image"
-        android:orientation="vertical">
-        <ImageView
-            android:id="@+id/character_image"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/margin_top_card_character"
+        android:layout_marginTop="@dimen/margin_top_card_character"
+        android:layout_marginRight="@dimen/margin_top_card_character"
+        android:layout_marginBottom="@dimen/margin_top_card_character"
+        android:elevation="@dimen/cardview_default_elevation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@color/color_background_default_Image"
-            android:contentDescription="@string/app_name"
-            android:minWidth="@dimen/margin_min_dialogFragment"
-            android:minHeight="@dimen/margin_minHeight_dialogFragment"
-            android:scaleType="center" />
-        <TextView
-            android:id="@+id/character_name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/margin_text_info_character"
-            android:layout_marginTop="@dimen/margin_Top_text_info_character"
-            android:layout_marginRight="@dimen/margin_text_info_character"
-            android:layout_marginBottom="@dimen/margin_text_info_character"
-            android:textColor="@color/color_name_character"
-            android:textSize="@dimen/text_name_size"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/character_description"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/margin_text_info_character"
-            android:layout_marginTop="@dimen/margin_Top_text_info_character"
-            android:layout_marginRight="@dimen/margin_text_info_character"
-            android:layout_marginBottom="@dimen/margin_text_info_character"
-            android:minWidth="@dimen/margin_min_dialogFragment"
-            android:minHeight="@dimen/margin_minHeight_description_dialogFragment"
-            android:textColor="@color/color_text_description"
-            android:textSize="@dimen/text_description_size" />
-    </LinearLayout>
-</HorizontalScrollView>
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/character_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/color_background_default_Image"
+                android:contentDescription="@string/app_name"
+                android:minWidth="@dimen/margin_min_dialogFragment"
+                android:minHeight="@dimen/margin_minHeight_dialogFragment"
+                android:scaleType="center" />
+
+            <TextView
+                android:id="@+id/character_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_text_info_character"
+                android:layout_marginTop="@dimen/margin_Top_text_info_character"
+                android:layout_marginRight="@dimen/margin_text_info_character"
+                android:layout_marginBottom="@dimen/margin_text_info_character"
+                android:textColor="@color/color_name_character"
+                android:textSize="@dimen/text_name_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/character_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_text_info_character"
+                android:layout_marginTop="@dimen/margin_Top_text_info_character"
+                android:layout_marginRight="@dimen/margin_text_info_character"
+                android:layout_marginBottom="@dimen/margin_text_info_character"
+                android:minWidth="@dimen/margin_min_dialogFragment"
+                android:minHeight="@dimen/margin_minHeight_description_dialogFragment"
+                android:textColor="@color/color_text_description"
+                android:textSize="@dimen/text_description_size" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
