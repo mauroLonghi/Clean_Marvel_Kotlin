@@ -1,8 +1,11 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation.extension
 
 import android.widget.ImageView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 
 fun ImageView.getImageByUrl(url: String) {
-    Picasso.with(context).load(url).fit().centerCrop().into(this)
+    Glide.with(context)
+            .load(url)
+            .centerCrop()
+            .into(this)
 }
