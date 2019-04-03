@@ -1,6 +1,5 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation
 
-import android.app.Dialog
 import android.app.DialogFragment
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.puzzlebench.clean_marvel_kotlin.data.service.CharacterServicesImpl
 import com.puzzlebench.clean_marvel_kotlin.domain.usecase.GetCharacterByIdUseCase
-import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.CharacterFragmentPresenter
-import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.CharecterFragmentView
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.model.CharacterDetailModel
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter.CharacterFragmentPresenter
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharecterFragmentView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,7 +45,7 @@ class CharacterFragment : DialogFragment() {
         val getCharacterServiceByIdUseCase = GetCharacterByIdUseCase(CharacterServicesImpl())
 
         val presenter = CharacterFragmentPresenter(CharecterFragmentView(this),
-                getCharacterServiceByIdUseCase, arguments.getInt(CHARACTER_ID))
+                CharacterDetailModel(getCharacterServiceByIdUseCase), arguments.getInt(CHARACTER_ID))
 
         presenter.init()
         return fragment_inflater

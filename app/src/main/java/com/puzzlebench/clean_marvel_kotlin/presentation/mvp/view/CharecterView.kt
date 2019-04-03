@@ -1,4 +1,4 @@
-package com.puzzlebench.clean_marvel_kotlin.presentation.mvp
+package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view
 
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
@@ -27,13 +27,12 @@ class CharecterView(activity: MainActivity) {
     fun init() {
         val activity = activityRef.get()
         if (activity != null) {
-          activity.recycleView.layoutManager = GridLayoutManager(activity, SPAN_COUNT)
+            activity.recycleView.layoutManager = GridLayoutManager(activity, SPAN_COUNT)
             activity.recycleView.adapter = adapter
 
             showLoading()
             showInformation()
         }
-
     }
 
     fun showInformation() {

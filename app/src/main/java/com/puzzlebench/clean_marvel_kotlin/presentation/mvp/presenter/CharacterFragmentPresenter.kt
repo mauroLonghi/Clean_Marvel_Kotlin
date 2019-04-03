@@ -1,11 +1,12 @@
-package com.puzzlebench.clean_marvel_kotlin.presentation.mvp
+package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter
 
-import com.puzzlebench.clean_marvel_kotlin.domain.usecase.GetCharacterByIdUseCase
 import com.puzzlebench.clean_marvel_kotlin.presentation.base.Presenter
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.model.CharacterDetailModel
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharecterFragmentView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class CharacterFragmentPresenter(view: CharecterFragmentView, private val getChatacterServiceByIdUseCase: GetCharacterByIdUseCase, val index: Int) : Presenter<CharecterFragmentView>(view) {
+class CharacterFragmentPresenter(view: CharecterFragmentView, val model: CharacterDetailModel, val index: Int) : Presenter<CharecterFragmentView>(view) {
 
     fun init() {
         view.init()
@@ -14,8 +15,7 @@ class CharacterFragmentPresenter(view: CharecterFragmentView, private val getCha
 
     private fun requestGetCharacters() {
 
-        getChatacterServiceByIdUseCase
-                .invoke(index)
+        model.getCharacterDetailServiceUseCase(index)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ character ->

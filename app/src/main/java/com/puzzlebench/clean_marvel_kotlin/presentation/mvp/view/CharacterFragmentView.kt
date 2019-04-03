@@ -1,4 +1,4 @@
-package com.puzzlebench.clean_marvel_kotlin.presentation.mvp
+package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view
 
 import android.view.View
 import com.puzzlebench.clean_marvel_kotlin.R
@@ -13,8 +13,8 @@ import java.lang.ref.WeakReference
 class CharecterFragmentView(fragment: CharacterFragment) {
     private val fragmentRef = WeakReference(fragment)
 
-    companion object{
-        private const val POINT_URL = "."
+    companion object {
+        private const val POINT_URL = ""
     }
 
     fun init() {
@@ -46,7 +46,7 @@ class CharecterFragmentView(fragment: CharacterFragment) {
                 else activity?.getString(R.string.message_no_items_to_show)
 
         activity?.character_image?.getImageByUrl(
-                "${characters.thumbnail.path}${POINT_URL}${characters.thumbnail.extension}"
+                "${characters.thumbnail.path}$POINT_URL${characters.thumbnail.extension}"
         )
     }
 
