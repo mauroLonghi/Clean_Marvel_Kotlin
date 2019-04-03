@@ -27,12 +27,19 @@ class CharecterView(activity: MainActivity) {
     fun init() {
         val activity = activityRef.get()
         if (activity != null) {
-            activity.recycleView.layoutManager = GridLayoutManager(activity, SPAN_COUNT)
+          activity.recycleView.layoutManager = GridLayoutManager(activity, SPAN_COUNT)
             activity.recycleView.adapter = adapter
 
             showLoading()
+            showInformation()
         }
 
+    }
+
+    fun showInformation() {
+
+        val activity = activityRef.get()
+        activity?.button_db?.setOnClickListener { activity.presenter.requestGetCharacters() }
     }
 
     fun showToastNoItemToShow() {
