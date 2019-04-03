@@ -2,11 +2,11 @@ package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter
 
 import com.puzzlebench.clean_marvel_kotlin.presentation.base.Presenter
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.model.CharacterDetailModel
-import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharecterFragmentView
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterFragmentView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class CharacterFragmentPresenter(view: CharecterFragmentView, val model: CharacterDetailModel, val index: Int) : Presenter<CharecterFragmentView>(view) {
+class CharacterFragmentPresenter(view: CharacterFragmentView, val model: CharacterDetailModel, val index: Int) : Presenter<CharacterFragmentView>(view) {
 
     fun init() {
         view.init()

@@ -31,14 +31,7 @@ class CharecterView(activity: MainActivity) {
             activity.recycleView.adapter = adapter
 
             showLoading()
-            showInformation()
         }
-    }
-
-    fun showInformation() {
-
-        val activity = activityRef.get()
-        activity?.button_db?.setOnClickListener { activity.presenter.requestGetCharacters() }
     }
 
     fun showToastNoItemToShow() {
