@@ -5,7 +5,7 @@ import com.puzzlebench.clean_marvel_kotlin.domain.model.Character
 import com.puzzlebench.clean_marvel_kotlin.domain.usecase.GetCharacterServiceUseCase
 import com.puzzlebench.clean_marvel_kotlin.mocks.factory.CharactersFactory
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter.CharacterPresenter
-import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharecterView
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterView
 import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.disposables.CompositeDisposable
@@ -22,7 +22,7 @@ import org.mockito.Mockito.verify
 class CharacterPresenterTest {
 
 
-    private var view = mock(CharecterView::class.java)
+    private var view = mock(CharacterView::class.java)
     private var characterServiceImp = mock(CharacterServicesImpl::class.java)
     private lateinit var characterPresenter: CharacterPresenter
     private lateinit var getCharacterServiceUseCase: GetCharacterServiceUseCase

@@ -6,35 +6,36 @@ import com.puzzlebench.clean_marvel_kotlin.domain.model.Character
 import com.puzzlebench.clean_marvel_kotlin.presentation.CharacterFragment
 import com.puzzlebench.clean_marvel_kotlin.presentation.extension.getImageByUrl
 import com.puzzlebench.clean_marvel_kotlin.presentation.extension.showToast
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.contract.FragmentContract
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_response.*
 import java.lang.ref.WeakReference
 
-class CharacterFragmentView(fragment: CharacterFragment) {
+class CharacterFragmentView(fragment: CharacterFragment) : FragmentContract.View {
     private val fragmentRef = WeakReference(fragment)
 
     companion object {
         private const val DOT_URL = "."
     }
 
-    fun init() {
+    override fun init() {
         getFragment() ?: showLoading()
     }
 
     private fun getFragment() = fragmentRef.get()
 
-    fun hideLoading() {
+    override fun hideLoading() {
         getFragment()?.activity?.progressBar?.visibility = View.GONE
     }
 
-    fun showToastNoItemToShow() {
+    override fun showToastNoItemToShow() {
         getFragment()?.let {
             val message = it.getString(R.string.message_no_items_to_show)
             getFragment()?.activity?.applicationContext?.showToast(message)
         }
     }
 
-    fun showCharacters(characters: Character) {
+    override fun showCharacters(characters: Character) {
         getFragment()?.character_name?.text =
                 if (!characters.name.isEmpty()) characters.name
                 else getFragment()?.getString(R.string.message_no_items_to_show)
@@ -48,7 +49,7 @@ class CharacterFragmentView(fragment: CharacterFragment) {
         )
     }
 
-    fun showLoading() {
+    override fun showLoading() {
         getFragment()?.activity?.progressBar?.visibility = View.VISIBLE
     }
 }

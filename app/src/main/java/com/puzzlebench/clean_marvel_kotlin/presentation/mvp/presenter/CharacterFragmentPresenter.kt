@@ -1,14 +1,14 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter
 
-import com.puzzlebench.clean_marvel_kotlin.presentation.base.Presenter
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.contract.FragmentContract
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.model.CharacterDetailModel
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterFragmentView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class CharacterFragmentPresenter(view: CharacterFragmentView, val model: CharacterDetailModel, val index: Int) : Presenter<CharacterFragmentView>(view) {
+class CharacterFragmentPresenter(val view: CharacterFragmentView, val model: CharacterDetailModel, val index: Int) : FragmentContract.Presenter {
 
-    fun init() {
+    override fun init() {
         view.init()
         requestGetCharacters()
     }

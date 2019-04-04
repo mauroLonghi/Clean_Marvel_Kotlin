@@ -1,17 +1,17 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter
 
-import com.puzzlebench.clean_marvel_kotlin.presentation.base.Presenter
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.contract.MainActivityContract
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.model.CharacterModel
-import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharecterView
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class CharacterPresenter(view: CharecterView, val model: CharacterModel) : Presenter<CharecterView>(view) {
-    fun init() {
+class CharacterPresenter(val view: CharacterView, val model: CharacterModel) : MainActivityContract.Presenter {
+    override fun init() {
         view.init()
     }
 
-    fun requestGetCharacters() {
+    override fun requestGetCharacters() {
         model.getCharacterDataServiceUseCase()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
