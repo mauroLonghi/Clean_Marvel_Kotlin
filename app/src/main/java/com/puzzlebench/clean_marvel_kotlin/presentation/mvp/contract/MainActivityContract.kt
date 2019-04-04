@@ -11,7 +11,7 @@ interface MainActivityContract {
     }
 
     interface Presenter {
-        fun init() {}
+        fun init()
         fun requestGetCharacters()
     }
 
@@ -21,6 +21,5 @@ interface MainActivityContract {
         fun showToastNetworkError(error: String)
         fun hideLoading()
         fun showCharacters(characters: List<Character>)
-        fun showLoading()
     }
 }

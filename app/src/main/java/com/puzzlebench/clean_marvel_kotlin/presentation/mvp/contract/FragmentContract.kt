@@ -10,14 +10,14 @@ interface FragmentContract {
     }
 
     interface Presenter {
-        fun init() {}
+        fun init()
     }
 
     interface View {
-        fun init() {}
-        fun showToastNoItemToShow() {}
-        fun hideLoading() {}
-        fun showCharacters(characters: Character) {}
-        fun showLoading() {}
+        fun init()
+        fun showToastNoItemToShow()
+        fun hideLoading()
+        fun showCharacters(characters: Character)
+        fun showLoading()
     }
 }
