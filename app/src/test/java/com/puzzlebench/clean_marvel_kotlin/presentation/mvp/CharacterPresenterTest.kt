@@ -4,11 +4,11 @@ import com.puzzlebench.clean_marvel_kotlin.data.service.CharacterServicesImpl
 import com.puzzlebench.clean_marvel_kotlin.domain.model.Character
 import com.puzzlebench.clean_marvel_kotlin.domain.usecase.GetCharacterServiceUseCase
 import com.puzzlebench.clean_marvel_kotlin.mocks.factory.CharactersFactory
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.model.CharacterModel
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter.CharacterPresenter
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterView
 import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.Ignore
@@ -23,6 +23,7 @@ class CharacterPresenterTest {
 
 
     private var view = mock(CharacterView::class.java)
+    private var model = mock(CharacterModel::class.java)
     private var characterServiceImp = mock(CharacterServicesImpl::class.java)
     private lateinit var characterPresenter: CharacterPresenter
     private lateinit var getCharacterServiceUseCase: GetCharacterServiceUseCase
@@ -34,9 +35,9 @@ class CharacterPresenterTest {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> Schedulers.trampoline() }
 
         getCharacterServiceUseCase = GetCharacterServiceUseCase(characterServiceImp)
-        val subscriptions = mock(CompositeDisposable::class.java)
-        characterPresenter = CharacterPresenter(view, getCharacterServiceUseCase, subscriptions)
-
+        //val subscriptions = mock(CompositeDisposable::class.java)
+        //characterPresenter = CharacterPresenter(view, getCharacterServiceUseCase, subscriptions)
+        characterPresenter = CharacterPresenter(view, model)
 
     }
 
@@ -67,8 +68,8 @@ class CharacterPresenterTest {
 
     @Test
     fun reposeWithoutItemToShow() {
-        val itemsCharecters = emptyList<Character>()
-        val observable = Observable.just(itemsCharecters)
+        val itemsCharacters = emptyList<Character>()
+        val observable = Observable.just(itemsCharacters)
         Mockito.`when`(getCharacterServiceUseCase.invoke()).thenReturn(observable)
         characterPresenter.init()
         verify(view).init()

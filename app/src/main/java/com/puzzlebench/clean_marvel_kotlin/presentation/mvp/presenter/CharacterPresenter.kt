@@ -12,6 +12,7 @@ class CharacterPresenter(val view: CharacterView, val model: CharacterModel) : M
     }
 
     override fun requestGetCharacters() {
+        view.showLoading()
         model.getCharacterDataServiceUseCase()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -27,5 +28,17 @@ class CharacterPresenter(val view: CharacterView, val model: CharacterModel) : M
                     view.hideLoading()
                     view.showToastNetworkError(e.message.toString())
                 })
+    }
+
+    override fun localGetCharacters() {
+        view.showLoading()
+        model.getCharacterLoadUseCase().let { characters ->
+            if (characters.isEmpty()) {
+                view.showToastNoItemToShow()
+            } else {
+                view.showCharacters(characters)
+            }
+            view.hideLoading()
+        }
     }
 }

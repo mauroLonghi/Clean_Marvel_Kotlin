@@ -6,14 +6,11 @@ import com.puzzlebench.clean_marvel_kotlin.domain.model.Character
 import com.puzzlebench.clean_marvel_kotlin.domain.model.CharacterRealm
 import io.realm.Realm
 
-class StoreCharacterServiceImpl(private val mapper: CharacterRealmMapper = CharacterRealmMapper()) : CharacterRepository.StoreRepository {
+class LoadCharacterLocalImpl(private val mapper: CharacterRealmMapper = CharacterRealmMapper()) : CharacterRepository.LoadRepository {
 
-    override fun saveCharacters(users: List<Character>) {
+    override fun loadCharacters(): List<Character> {
         var realm = Realm.getDefaultInstance()
-        realm.executeTransaction {
-            realm.deleteAll()
-            var userRealm: List<CharacterRealm> = mapper.transform(users)
-            realm.insert(userRealm)
-        }
+        val charactersRealm = realm.where(CharacterRealm::class.java).findAll()
+        return mapper.transformToListCharacters(charactersRealm)
     }
 }

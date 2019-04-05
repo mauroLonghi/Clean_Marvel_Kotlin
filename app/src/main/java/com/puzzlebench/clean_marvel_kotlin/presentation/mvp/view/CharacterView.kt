@@ -17,6 +17,7 @@ class CharacterView(activity: MainActivity) : MainActivityContract.View {
     private val SPAN_COUNT = 1
 
     var adapter = CharacterAdapter { character ->
+
         activity.applicationContext.showToast(character.name)
 
         val characterFragment = CharacterFragment.newInstance(character.id)
@@ -30,7 +31,7 @@ class CharacterView(activity: MainActivity) : MainActivityContract.View {
             activity.recycleView.layoutManager = GridLayoutManager(activity, SPAN_COUNT)
             activity.recycleView.adapter = adapter
 
-            showLoading()
+            hideLoading()
         }
     }
 
@@ -55,7 +56,7 @@ class CharacterView(activity: MainActivity) : MainActivityContract.View {
         adapter.data = characters
     }
 
-    private fun showLoading() {
+    fun showLoading() {
         activityRef.get()?.progressBar?.visibility = View.VISIBLE
     }
 }
