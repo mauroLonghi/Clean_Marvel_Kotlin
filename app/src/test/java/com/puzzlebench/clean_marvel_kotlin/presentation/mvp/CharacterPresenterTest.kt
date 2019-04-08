@@ -17,8 +17,6 @@ import org.mockito.Mockito
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 
-//TODO fix on second iteration
-// error: However, there was exactly 1 interaction with this mock:
 class CharacterPresenterTest {
 
     private var view = mock(CharacterView::class.java)
