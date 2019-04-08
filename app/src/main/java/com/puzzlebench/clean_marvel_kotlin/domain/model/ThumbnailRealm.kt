@@ -1,5 +1,6 @@
 package com.puzzlebench.clean_marvel_kotlin.domain.model
 
+import com.puzzlebench.clean_marvel_kotlin.domain.model.Object.DEFAULT_VALUE
 import io.realm.RealmObject
 
 open class ThumbnailRealm(

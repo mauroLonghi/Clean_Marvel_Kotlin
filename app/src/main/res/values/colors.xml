@@ -2,9 +2,9 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#000F68</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#F80000</color>
     <color name="color_background_default_Image">#000000</color>
     <color name="color_text_description">#b71c1c</color>
     <color name="color_name_character">#f5f5f5</color>
-    <color name="color_backgroung_recycler">#6F6E6E</color>
+    <color name="color_background_recycler">#6F6E6E</color>
 </resources>

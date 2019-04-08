@@ -2,7 +2,9 @@ package com.puzzlebench.clean_marvel_kotlin.presentation
 
 import android.os.Bundle
 import com.puzzlebench.clean_marvel_kotlin.data.service.CharacterServicesImpl
+import com.puzzlebench.clean_marvel_kotlin.data.service.LoadCharacterLocalImpl
 import com.puzzlebench.clean_marvel_kotlin.data.service.StoreCharacterServiceImpl
+import com.puzzlebench.clean_marvel_kotlin.domain.usecase.GetCharacterLoadUseCase
 import com.puzzlebench.clean_marvel_kotlin.domain.usecase.GetCharacterServiceUseCase
 import com.puzzlebench.clean_marvel_kotlin.domain.usecase.GetCharacterStoreUseCase
 import com.puzzlebench.clean_marvel_kotlin.presentation.base.BaseRxActivity
@@ -16,8 +18,8 @@ open class MainActivity : BaseRxActivity() {
 
     val getCharacterServiceUseCase = GetCharacterServiceUseCase(CharacterServicesImpl())
     val storeCharacterUseCase = GetCharacterStoreUseCase(StoreCharacterServiceImpl())
-
-    val presenter = CharacterPresenter(CharacterView(this), CharacterModel(getCharacterServiceUseCase, storeCharacterUseCase))
+    val loadCharacterUseCase = GetCharacterLoadUseCase(LoadCharacterLocalImpl())
+    val presenter = CharacterPresenter(CharacterView(this), CharacterModel(getCharacterServiceUseCase, storeCharacterUseCase, loadCharacterUseCase))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +28,9 @@ open class MainActivity : BaseRxActivity() {
 
         button_db.setOnClickListener {
             presenter.requestGetCharacters()
+        }
+        button_service.setOnClickListener {
+            presenter.localGetCharacters()
         }
     }
 

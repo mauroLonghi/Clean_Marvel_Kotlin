@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/color_backgroung_recycler"
+    android:background="@color/color_background_recycler"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
@@ -33,18 +33,17 @@
 
             <TextView
                 android:id="@+id/character_name"
+                style="@style/MainStyleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/margin_text_info_character"
                 android:layout_marginTop="@dimen/margin_Top_text_info_character"
                 android:layout_marginRight="@dimen/margin_text_info_character"
-                android:layout_marginBottom="@dimen/margin_text_info_character"
-                android:textColor="@color/color_name_character"
-                android:textSize="@dimen/text_name_size"
-                android:textStyle="bold" />
+                android:layout_marginBottom="@dimen/margin_text_info_character" />
 
             <TextView
                 android:id="@+id/character_description"
+                style="@style/MainStyleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/margin_text_info_character"
@@ -52,9 +51,7 @@
                 android:layout_marginRight="@dimen/margin_text_info_character"
                 android:layout_marginBottom="@dimen/margin_text_info_character"
                 android:minWidth="@dimen/margin_min_dialogFragment"
-                android:minHeight="@dimen/margin_minHeight_description_dialogFragment"
-                android:textColor="@color/color_text_description"
-                android:textSize="@dimen/text_description_size" />
+                android:minHeight="@dimen/margin_minHeight_description_dialogFragment" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

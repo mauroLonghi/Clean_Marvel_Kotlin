@@ -8,11 +8,13 @@ interface MainActivityContract {
     interface Model {
         fun getCharacterDataServiceUseCase(): Observable<List<Character>>
         fun getCharacterStoreServiceUseCase(character: List<Character>)
+        fun getCharacterLoadUseCase(): List<Character>
     }
 
     interface Presenter {
         fun init()
         fun requestGetCharacters()
+        fun localGetCharacters()
     }
 
     interface View {
@@ -21,5 +23,6 @@ interface MainActivityContract {
         fun showToastNetworkError(error: String)
         fun hideLoading()
         fun showCharacters(characters: List<Character>)
+        fun cleanRecycler()
     }
 }

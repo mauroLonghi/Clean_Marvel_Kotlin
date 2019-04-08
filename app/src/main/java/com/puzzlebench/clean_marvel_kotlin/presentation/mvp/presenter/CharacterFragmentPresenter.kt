@@ -14,7 +14,6 @@ class CharacterFragmentPresenter(val view: CharacterFragmentView, val model: Cha
     }
 
     private fun requestGetCharacters() {
-
         model.getCharacterDetailServiceUseCase(index)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

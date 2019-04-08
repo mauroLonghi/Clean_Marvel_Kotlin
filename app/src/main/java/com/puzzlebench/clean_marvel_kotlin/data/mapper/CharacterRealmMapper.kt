@@ -32,4 +32,7 @@ class CharacterRealmMapper : BaseMapperRepository<CharacterRealm, Character> {
     )
 
     fun transform(charactersResponse: List<Character>) = charactersResponse.map { transformToResponse(it) }
+    fun transformToListCharacters(charactersResponse: List<CharacterRealm>) = charactersResponse.map { transform(it) }
+
+
 }
