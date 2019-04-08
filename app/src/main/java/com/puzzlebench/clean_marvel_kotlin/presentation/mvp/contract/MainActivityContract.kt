@@ -23,5 +23,6 @@ interface MainActivityContract {
         fun showToastNetworkError(error: String)
         fun hideLoading()
         fun showCharacters(characters: List<Character>)
+        fun cleanRecycler()
     }
 }

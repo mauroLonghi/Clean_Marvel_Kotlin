@@ -30,7 +30,6 @@ class CharacterView(activity: MainActivity) : MainActivityContract.View {
         if (activity != null) {
             activity.recycleView.layoutManager = GridLayoutManager(activity, SPAN_COUNT)
             activity.recycleView.adapter = adapter
-
             hideLoading()
         }
     }
@@ -40,7 +39,6 @@ class CharacterView(activity: MainActivity) : MainActivityContract.View {
         if (activity != null) {
             val message = activity.baseContext.resources.getString(R.string.message_no_items_to_show)
             activity.applicationContext.showToast(message)
-
         }
     }
 
@@ -58,5 +56,8 @@ class CharacterView(activity: MainActivity) : MainActivityContract.View {
 
     fun showLoading() {
         activityRef.get()?.progressBar?.visibility = View.VISIBLE
+    }
+    override fun cleanRecycler(){
+        adapter.data = emptyList()
     }
 }
