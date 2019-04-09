@@ -54,10 +54,11 @@ class CharacterView(activity: MainActivity) : MainActivityContract.View {
         adapter.data = characters
     }
 
-    fun showLoading() {
+    override fun showLoading() {
         activityRef.get()?.progressBar?.visibility = View.VISIBLE
     }
-    override fun cleanRecycler(){
+
+    override fun cleanRecycler() {
         adapter.data = emptyList()
     }
 }

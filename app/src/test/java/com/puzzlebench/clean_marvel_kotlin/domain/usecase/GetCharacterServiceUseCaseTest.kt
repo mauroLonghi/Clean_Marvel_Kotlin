@@ -1,6 +1,6 @@
 package com.puzzlebench.clean_marvel_kotlin.domain.usecase
 
-import com.puzzlebench.clean_marvel_kotlin.data.service.CharacterServicesImpl
+import com.puzzlebench.clean_marvel_kotlin.domain.contracts.CharacterService
 import com.puzzlebench.clean_marvel_kotlin.mocks.factory.CharactersFactory
 import io.reactivex.Observable
 import org.junit.Before
@@ -9,21 +9,20 @@ import org.mockito.Mockito.*
 
 class GetCharacterServiceUseCaseTest {
 
-    private lateinit var characterServiceImp: CharacterServicesImpl
+    private lateinit var characterService: CharacterService
 
     @Before
     fun setUp() {
-        val videoItems = CharactersFactory.getMockCharacter()
+        val videoItems = CharactersFactory.getMockListCharacter()
         val observable = Observable.just(videoItems)
-        characterServiceImp = mock(CharacterServicesImpl::class.java)
-        `when`(characterServiceImp.getCaracters()).thenReturn(observable)
-
+        characterService = mock(CharacterService::class.java)
+        `when`(characterService.getCaracters()).thenReturn(observable)
     }
 
-    @Test operator fun invoke() {
-        val getCharacterServiceUseCase = GetCharacterServiceUseCase(characterServiceImp)
+    @Test
+    operator fun invoke() {
+        val getCharacterServiceUseCase = GetCharacterServiceUseCase(characterService)
         getCharacterServiceUseCase.invoke()
-        verify(characterServiceImp).getCaracters()
+        verify(characterService).getCaracters()
     }
-
 }

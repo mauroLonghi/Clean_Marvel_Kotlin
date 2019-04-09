@@ -1,8 +1,8 @@
 package com.puzzlebench.clean_marvel_kotlin.domain.usecase
 
-import com.puzzlebench.clean_marvel_kotlin.data.service.LoadCharacterLocalImpl
+import com.puzzlebench.clean_marvel_kotlin.domain.contracts.CharacterRepository
 
-class GetCharacterLoadUseCase(private val loadCharactersImpl: LoadCharacterLocalImpl) {
+class GetCharacterLoadUseCase(private val loadCharacters: CharacterRepository.LoadRepository) {
 
-    open operator fun invoke() = loadCharactersImpl.loadCharacters()
+    open operator fun invoke() = loadCharacters.loadCharacters()
 }

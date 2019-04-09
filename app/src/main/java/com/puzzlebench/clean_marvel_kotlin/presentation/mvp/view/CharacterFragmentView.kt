@@ -52,4 +52,8 @@ class CharacterFragmentView(fragment: CharacterFragment) : FragmentContract.View
     override fun showLoading() {
         getFragment()?.activity?.progressBar?.visibility = View.VISIBLE
     }
+
+    override fun showToastNetworkError(error: String) {
+        getFragment()?.activity?.applicationContext?.showToast(error)
+    }
 }
