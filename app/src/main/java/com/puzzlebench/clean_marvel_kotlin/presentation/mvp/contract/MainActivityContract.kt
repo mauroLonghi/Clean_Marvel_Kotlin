@@ -24,5 +24,6 @@ interface MainActivityContract {
         fun hideLoading()
         fun showCharacters(characters: List<Character>)
         fun cleanRecycler()
+        fun showLoading()
     }
 }

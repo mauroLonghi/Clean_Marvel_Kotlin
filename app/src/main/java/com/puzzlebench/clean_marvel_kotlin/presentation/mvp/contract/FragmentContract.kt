@@ -19,5 +19,6 @@ interface FragmentContract {
         fun hideLoading()
         fun showCharacters(characters: Character)
         fun showLoading()
+        fun showToastNetworkError(error: String)
     }
 }

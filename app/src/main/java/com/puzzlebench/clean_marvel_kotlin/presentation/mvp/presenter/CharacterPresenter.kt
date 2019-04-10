@@ -1,12 +1,10 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter
 
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.contract.MainActivityContract
-import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.model.CharacterModel
-import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class CharacterPresenter(val view: CharacterView, val model: CharacterModel) : MainActivityContract.Presenter {
+class CharacterPresenter(val view: MainActivityContract.View, val model: MainActivityContract.Model) : MainActivityContract.Presenter {
     override fun init() {
         view.init()
     }
@@ -22,7 +20,6 @@ class CharacterPresenter(val view: CharacterView, val model: CharacterModel) : M
                         view.showToastNoItemToShow()
                     } else {
                         model.getCharacterStoreServiceUseCase(characters)
-
                         view.showCharacters(characters)
                     }
                     view.hideLoading()
@@ -39,7 +36,6 @@ class CharacterPresenter(val view: CharacterView, val model: CharacterModel) : M
             if (characters.isEmpty()) {
                 view.showToastNoItemToShow()
             } else {
-                view.cleanRecycler()
                 view.showCharacters(characters)
             }
             view.hideLoading()
