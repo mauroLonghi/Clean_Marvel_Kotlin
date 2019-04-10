@@ -7,6 +7,9 @@ import com.puzzlebench.clean_marvel_kotlin.domain.model.Thumbnail
 import junit.framework.Assert
 import org.junit.Before
 import org.junit.Test
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
+import org.mockito.MockitoAnnotations
 
 class CharacterMapperServiceTest {
     companion object {
@@ -18,33 +21,52 @@ class CharacterMapperServiceTest {
         private const val EXTENSION = ".PNG"
     }
 
+    val mockCharacterResponse = mock(CharacterResponse::class.java)
+    val mockThumbnailResponse = mock(ThumbnailResponse::class.java)
+    val mockCharacter = mock(Character::class.java)
+    val mockThumbnail = mock(Thumbnail::class.java)
+
     @Before
     fun setUp() {
+        MockitoAnnotations.initMocks(this)
         mapper = CharacterMapperService()
     }
 
     @Test
     fun transform() {
-        val mockThumbnailResponse = ThumbnailResponse(PATH, EXTENSION)
-        val mockCharacterResponse = CharacterResponse(ID, NAME, DESCRIPTION, mockThumbnailResponse)
-        val result = mapper.transform(mockCharacterResponse)
-        assertBufferooDataEquality(mockCharacterResponse, result)
+        `when`(mockCharacterResponse.id).thenReturn(ID)
+        `when`(mockCharacterResponse.name).thenReturn(NAME)
+        `when`(mockCharacterResponse.description).thenReturn(DESCRIPTION)
+        `when`(mockThumbnailResponse.path).thenReturn(PATH)
+        `when`(mockThumbnailResponse.extension).thenReturn(EXTENSION)
+        `when`(mockCharacterResponse.thumbnail).thenReturn(mockThumbnailResponse)
+        assertBufferDataEquality(mapper.transform(mockCharacterResponse))
     }
 
     @Test
     fun transformToResponse() {
-        val mockThumbnail = Thumbnail(PATH, EXTENSION)
-        val mockCharacter = Character(ID, NAME, DESCRIPTION, mockThumbnail)
-        val result = mapper.transformToResponse(mockCharacter)
-        assertBufferooDataEquality(result, mockCharacter)
+        `when`(mockCharacter.id).thenReturn(ID)
+        `when`(mockCharacter.name).thenReturn(NAME)
+        `when`(mockCharacter.description).thenReturn(DESCRIPTION)
+        `when`(mockThumbnail.path).thenReturn(PATH)
+        `when`(mockThumbnail.extension).thenReturn(EXTENSION)
+        `when`(mockCharacter.thumbnail).thenReturn(mockThumbnail)
+        assertBufferDataResponseEquality(mapper.transformToResponse(mockCharacter))
     }
 
-    private fun assertBufferooDataEquality(characterResponse: CharacterResponse,
-                                           character: Character) {
-        Assert.assertEquals(characterResponse.id, character.id)
-        Assert.assertEquals(characterResponse.name, character.name)
-        Assert.assertEquals(characterResponse.description, character.description)
-        Assert.assertEquals(characterResponse.thumbnail.path, character.thumbnail.path)
-        Assert.assertEquals(characterResponse.thumbnail.extension, character.thumbnail.extension)
+    private fun assertBufferDataEquality(character: Character) {
+        Assert.assertEquals(ID, character.id)
+        Assert.assertEquals(NAME, character.name)
+        Assert.assertEquals(DESCRIPTION, character.description)
+        Assert.assertEquals(PATH, character.thumbnail.path)
+        Assert.assertEquals(EXTENSION, character.thumbnail.extension)
+    }
+
+    private fun assertBufferDataResponseEquality(character: CharacterResponse) {
+        Assert.assertEquals(ID, character.id)
+        Assert.assertEquals(NAME, character.name)
+        Assert.assertEquals(DESCRIPTION, character.description)
+        Assert.assertEquals(PATH, character.thumbnail.path)
+        Assert.assertEquals(EXTENSION, character.thumbnail.extension)
     }
 }

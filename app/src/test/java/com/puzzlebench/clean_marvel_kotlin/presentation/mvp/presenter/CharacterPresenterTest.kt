@@ -1,14 +1,11 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter
 
-import com.puzzlebench.clean_marvel_kotlin.domain.contracts.CharacterRepository
-import com.puzzlebench.clean_marvel_kotlin.domain.contracts.CharacterService
 import com.puzzlebench.clean_marvel_kotlin.domain.model.Character
 import com.puzzlebench.clean_marvel_kotlin.domain.model.Object.DEFAULT_VALUE
 import com.puzzlebench.clean_marvel_kotlin.domain.model.Object.NO_DELAY
 import com.puzzlebench.clean_marvel_kotlin.domain.usecase.GetCharacterLoadUseCase
 import com.puzzlebench.clean_marvel_kotlin.domain.usecase.GetCharacterServiceUseCase
 import com.puzzlebench.clean_marvel_kotlin.domain.usecase.GetCharacterStoreUseCase
-import com.puzzlebench.clean_marvel_kotlin.mocks.factory.CharactersFactory
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.contract.MainActivityContract
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.model.CharacterModel
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterView
@@ -22,25 +19,24 @@ import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
+import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
+import org.mockito.MockitoAnnotations
 import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
 
 class CharacterPresenterTest {
 
-    private var view = mock(CharacterView::class.java)
     private lateinit var model: MainActivityContract.Model
     private lateinit var characterPresenter: MainActivityContract.Presenter
+    private var view = mock(CharacterView::class.java)
+    private var getCharacterServiceUseCase = mock(GetCharacterServiceUseCase::class.java)
+    private var getCharacterStoreUseCase = mock(GetCharacterStoreUseCase::class.java)
+    private var getCharacterLoadUseCase = mock(GetCharacterLoadUseCase::class.java)
 
-    private var characterService = mock(CharacterService::class.java)
-    private var characterLoad = mock(CharacterRepository.LoadRepository::class.java)
-    private var characterStore = mock(CharacterRepository.StoreRepository::class.java)
-
-    private lateinit var getCharacterServiceUseCase: GetCharacterServiceUseCase
-    private lateinit var getCharacterStoreUseCase: GetCharacterStoreUseCase
-    private lateinit var getCharacterLoadUseCase: GetCharacterLoadUseCase
+    @Mock
+    lateinit var characters: List<Character>
 
     companion object {
 
@@ -67,11 +63,8 @@ class CharacterPresenterTest {
 
     @Before
     fun setUp() {
+        MockitoAnnotations.initMocks(this)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> Schedulers.trampoline() }
-        getCharacterServiceUseCase = GetCharacterServiceUseCase(characterService)
-        getCharacterStoreUseCase = GetCharacterStoreUseCase(characterStore)
-        getCharacterLoadUseCase = GetCharacterLoadUseCase(characterLoad)
-
         model = CharacterModel(getCharacterServiceUseCase, getCharacterStoreUseCase, getCharacterLoadUseCase)
         characterPresenter = CharacterPresenter(view, model)
     }
@@ -82,52 +75,55 @@ class CharacterPresenterTest {
         characterPresenter.requestGetCharacters()
         verify(view).cleanRecycler()
         verify(view).showLoading()
+        verify(getCharacterServiceUseCase).invoke()
         verify(view).hideLoading()
         verify(view).showToastNetworkError(DEFAULT_VALUE)
     }
 
     @Test
     fun reposeWithItemToShow() {
-        val itemsCharacters = CharactersFactory.getMockListCharacter()
-        val observable = Observable.just(itemsCharacters)
-        Mockito.`when`(model.getCharacterDataServiceUseCase()).thenReturn(observable)
+        val observable = Observable.just(characters)
+        `when`(getCharacterServiceUseCase.invoke()).thenReturn(observable)
         characterPresenter.requestGetCharacters()
         verify(view).cleanRecycler()
         verify(view).showLoading()
-        verify(view).showCharacters(itemsCharacters)
+        verify(getCharacterServiceUseCase).invoke()
+        verify(view).showCharacters(characters)
         verify(view).hideLoading()
     }
 
     @Test
     fun reposeWithoutItemToShow() {
-        val itemsCharacters = emptyList<Character>()
-        val observable = Observable.just(itemsCharacters)
-        Mockito.`when`(model.getCharacterDataServiceUseCase()).thenReturn(observable)
+        `when`(characters.isEmpty()).thenReturn(true)
+        val observable = Observable.just(characters)
+        Mockito.`when`(getCharacterServiceUseCase.invoke()).thenReturn(observable)
         characterPresenter.requestGetCharacters()
         verify(view).cleanRecycler()
         verify(view).showLoading()
+        verify(getCharacterServiceUseCase).invoke()
         verify(view).showToastNoItemToShow()
         verify(view).hideLoading()
     }
 
     @Test
     fun responseCharacterLocal() {
-        val itemsCharacters = CharactersFactory.getMockListCharacter()
-        Mockito.`when`(model.getCharacterLoadUseCase()).thenReturn(itemsCharacters)
+        `when`(getCharacterLoadUseCase.invoke()).thenReturn(characters)
         characterPresenter.localGetCharacters()
         verify(view).cleanRecycler()
         verify(view).showLoading()
-        verify(view).showCharacters(itemsCharacters)
+        verify(getCharacterLoadUseCase).invoke()
+        verify(view).showCharacters(characters)
         verify(view).hideLoading()
     }
 
     @Test
     fun responseEmptyCharacterLocal() {
-        val itemsCharacters = emptyList<Character>()
-        Mockito.`when`(model.getCharacterLoadUseCase()).thenReturn(itemsCharacters)
+        `when`(characters.isEmpty()).thenReturn(true)
+        `when`(getCharacterLoadUseCase.invoke()).thenReturn(characters)
         characterPresenter.localGetCharacters()
         verify(view).cleanRecycler()
         verify(view).showLoading()
+        verify(getCharacterLoadUseCase).invoke()
         verify(view).showToastNoItemToShow()
         verify(view).hideLoading()
     }

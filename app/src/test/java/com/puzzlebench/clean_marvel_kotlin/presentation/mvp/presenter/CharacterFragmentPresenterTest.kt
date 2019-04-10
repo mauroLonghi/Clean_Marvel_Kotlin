@@ -1,11 +1,10 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter
 
-import com.puzzlebench.clean_marvel_kotlin.domain.contracts.CharacterService
+import com.puzzlebench.clean_marvel_kotlin.domain.model.Character
 import com.puzzlebench.clean_marvel_kotlin.domain.model.Object.DEFAULT_ID_TEST
 import com.puzzlebench.clean_marvel_kotlin.domain.model.Object.DEFAULT_VALUE
 import com.puzzlebench.clean_marvel_kotlin.domain.model.Object.NO_DELAY
 import com.puzzlebench.clean_marvel_kotlin.domain.usecase.GetCharacterByIdUseCase
-import com.puzzlebench.clean_marvel_kotlin.mocks.factory.CharactersFactory
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.contract.FragmentContract
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.model.CharacterDetailModel
 import io.reactivex.Observable
@@ -18,18 +17,21 @@ import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
+import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
+import org.mockito.MockitoAnnotations
 import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
 
 class CharacterFragmentPresenterTest {
     private var view = Mockito.mock(FragmentContract.View::class.java)
-    private var characterServiceById = Mockito.mock(CharacterService::class.java)
-
     private lateinit var model: FragmentContract.Model
     private lateinit var characterPresenter: FragmentContract.Presenter
-    private lateinit var getCharacterServiceByIdUseCase: GetCharacterByIdUseCase
+    private var getCharacterServiceByIdUseCase = mock(GetCharacterByIdUseCase::class.java)
+
+    @Mock
+    lateinit var character: Character
 
     companion object {
 
@@ -56,38 +58,36 @@ class CharacterFragmentPresenterTest {
 
     @Before
     fun setUp() {
+        MockitoAnnotations.initMocks(this)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> Schedulers.trampoline() }
-        getCharacterServiceByIdUseCase = GetCharacterByIdUseCase(characterServiceById)
-
         model = CharacterDetailModel(getCharacterServiceByIdUseCase)
         characterPresenter = CharacterFragmentPresenter(view, model, DEFAULT_ID_TEST)
     }
 
     @Test
     fun reposeWithItemToShow() {
-        val character = CharactersFactory.getMockCharacter()
         val observable = Observable.just(character)
-
-        Mockito.`when`(model.getCharacterDetailServiceUseCase(DEFAULT_ID_TEST)).thenReturn(observable)
+        `when`(getCharacterServiceByIdUseCase.invoke(DEFAULT_ID_TEST)).thenReturn(observable)
         characterPresenter.init()
-
+        verify(getCharacterServiceByIdUseCase).invoke(DEFAULT_ID_TEST)
         verify(view).showCharacters(character)
         verify(view).showLoading()
     }
 
     @Test
     fun reposeWithoutItemToShow() {
-        val character = CharactersFactory.getMockCharacter()
-        Mockito.`when`(model.getCharacterDetailServiceUseCase(DEFAULT_ID_TEST)).thenReturn(Observable.error(Exception(DEFAULT_VALUE)))
+        `when`(getCharacterServiceByIdUseCase.invoke(DEFAULT_ID_TEST)).thenReturn(Observable.error(Exception(DEFAULT_VALUE)))
         characterPresenter.init()
+        verify(getCharacterServiceByIdUseCase).invoke(DEFAULT_ID_TEST)
         verify(view).hideLoading()
         verify(view).showToastNetworkError(DEFAULT_VALUE)
     }
 
     @Test
     fun reposeWithError() {
-        Mockito.`when`(model.getCharacterDetailServiceUseCase(DEFAULT_ID_TEST)).thenReturn(Observable.error(Exception(DEFAULT_VALUE)))
+        `when`(getCharacterServiceByIdUseCase.invoke(DEFAULT_ID_TEST)).thenReturn(Observable.error(Exception(DEFAULT_VALUE)))
         characterPresenter.init()
+        verify(getCharacterServiceByIdUseCase).invoke(DEFAULT_ID_TEST)
         verify(view).hideLoading()
         verify(view).showToastNetworkError(DEFAULT_VALUE)
     }

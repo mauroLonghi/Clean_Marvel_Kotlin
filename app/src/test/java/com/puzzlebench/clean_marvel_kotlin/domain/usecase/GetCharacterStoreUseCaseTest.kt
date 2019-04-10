@@ -1,28 +1,29 @@
 package com.puzzlebench.clean_marvel_kotlin.domain.usecase
 
 import com.puzzlebench.clean_marvel_kotlin.domain.contracts.CharacterRepository
-import com.puzzlebench.clean_marvel_kotlin.mocks.factory.CharactersFactory
-import io.reactivex.Observable
+import com.puzzlebench.clean_marvel_kotlin.domain.model.Character
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.Mockito.verify
+import org.mockito.Mock
+import org.mockito.Mockito.*
+import org.mockito.MockitoAnnotations
 
 class GetCharacterStoreUseCaseTest {
 
     private lateinit var characterService: CharacterRepository.StoreRepository
 
+    @Mock
+    lateinit var itemsMock: List<Character>
+
     @Before
     fun setUp() {
-        val itemsMock = CharactersFactory.getMockListCharacter()
-        val observable = Observable.just(itemsMock)
-        characterService = Mockito.mock(CharacterRepository.StoreRepository::class.java)
-        Mockito.`when`(characterService.saveCharacters(itemsMock)).then {}
+        MockitoAnnotations.initMocks(this)
+        characterService = mock(CharacterRepository.StoreRepository::class.java)
+        `when`(characterService.saveCharacters(itemsMock)).then {}
     }
 
     @Test
     operator fun invoke() {
-        val itemsMock = CharactersFactory.getMockListCharacter()
         val getCharacterStoreUseCase = GetCharacterStoreUseCase(characterService)
         getCharacterStoreUseCase.invoke(itemsMock)
         verify(characterService).saveCharacters(itemsMock)
