@@ -1,6 +1,7 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation
 
 import android.os.Bundle
+import com.puzzlebench.clean_marvel_kotlin.R
 import com.puzzlebench.clean_marvel_kotlin.data.service.CharacterServicesImpl
 import com.puzzlebench.clean_marvel_kotlin.data.service.LoadCharacterLocalImpl
 import com.puzzlebench.clean_marvel_kotlin.data.service.StoreCharacterServiceImpl
@@ -23,6 +24,7 @@ open class MainActivity : BaseRxActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.AppTheme)
         setContentView(com.puzzlebench.clean_marvel_kotlin.R.layout.activity_main)
         presenter.init()
 

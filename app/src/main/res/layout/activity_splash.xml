@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".presentation.SplashActivity">
+
+    <ImageView
+        android:id="@+id/image_rotation"
+        android:layout_width="@dimen/image_splash_width"
+        android:layout_height="@dimen/image_splash_height"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/marvellogo" />
+</RelativeLayout>

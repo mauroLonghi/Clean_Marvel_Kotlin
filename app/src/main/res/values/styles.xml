@@ -12,4 +12,8 @@
         <item name="android:textColor">@color/color_background_recycler</item>
         <item name="android:textSize">@dimen/title_text_size</item>
     </style>
+    <style name="AppTheme.Launcher">
+    <item name="android:windowBackground">@drawable/launch_screen</item>
+
+    </style>
 </resources>

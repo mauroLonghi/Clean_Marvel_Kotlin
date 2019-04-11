@@ -17,4 +17,7 @@
     <dimen name="text_description_size">15sp</dimen>
     <dimen name="margin_floatingButton">54dp</dimen>
     <dimen name="margin_top_card_character">2dp</dimen>
+    <dimen name="rotate_Pivot_splash">50%</dimen>
+    <dimen name="image_splash_height">200dp</dimen>
+    <dimen name="image_splash_width">200dp</dimen>
 </resources>
