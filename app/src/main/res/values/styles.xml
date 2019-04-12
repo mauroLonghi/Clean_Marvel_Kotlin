@@ -20,12 +20,32 @@
         <item name="android:fontFamily">@font/font_titles</item>
     </style>
 
-    <style name="ToolbarStyle" parent="ThemeOverlay.AppCompat.Light">
+    <style name="ToolbarStyle">
         <item name="android:height">?attr/actionBarSize</item>
         <item name="android:background">@color/ic_launcher_background</item>
         <item name="android:textColor">@color/color_fontTitles_recycler</item>
         <item name="android:textSize">@dimen/text_size_toolbar</item>
         <item name="android:font" tools:targetApi="o">@font/font_titles</item>
+        <item name="android:fontFamily">@font/font_titles</item>
+    </style>
+
+    <style name="ToolbarLandscapeStyle">
+        <item name="android:height">?attr/actionBarSize</item>
+        <item name="android:background">@color/ic_launcher_background</item>
+        <item name="android:textColor">@color/color_fontTitles_recycler</item>
+        <item name="android:textSize">@dimen/text_size_toolbar_landscape</item>
+        <item name="android:fontFamily">@font/font_titles</item>
+    </style>
+
+    <style name="TitleStyleLandscapeView" parent="Theme.AppCompat">
+        <item name="android:textColor">@color/ic_launcher_background</item>
+        <item name="android:textSize">@dimen/title_text_landscape_size</item>
+        <item name="android:fontFamily">@font/font_titles</item>
+    </style>
+
+    <style name="SubtitleStyleLandscapeView" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/color_fontTitles_recycler</item>
+        <item name="android:textSize">@dimen/subtitle_text_landscape_size</item>
         <item name="android:fontFamily">@font/font_titles</item>
     </style>
 </resources>
