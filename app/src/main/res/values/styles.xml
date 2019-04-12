@@ -1,19 +1,30 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="MainStyleView" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/color_background_recycler</item>
+    <style name="TitleStyleView" parent="Theme.AppCompat">
+        <item name="android:textColor">@color/color_fontTitles_recycler</item>
         <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:fontFamily">@font/font_titles</item>
     </style>
-    <style name="AppTheme.Launcher">
-    <item name="android:windowBackground">@drawable/launch_screen</item>
 
+    <style name="SubtitleStyleView" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/color_background_recycler</item>
+        <item name="android:textSize">@dimen/subtitle_text_size</item>
+        <item name="android:fontFamily">@font/font_titles</item>
+    </style>
+
+    <style name="ToolbarStyle">
+        <item name="android:height">?attr/actionBarSize</item>
+        <item name="android:background">@color/ic_launcher_background</item>
+        <item name="android:textColor">@color/color_fontTitles_recycler</item>
+        <item name="android:textSize">@dimen/text_size_toolbar</item>
+        <item name="android:font" tools:targetApi="o">@font/font_titles</item>
     </style>
 </resources>

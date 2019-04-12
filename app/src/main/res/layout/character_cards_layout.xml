@@ -27,7 +27,7 @@
 
         <TextView
             android:id="@+id/tv_item"
-            style="@style/MainStyleView"
+            style="@style/TitleStyleView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
