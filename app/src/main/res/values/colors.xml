@@ -7,4 +7,6 @@
     <color name="color_text_description">#b71c1c</color>
     <color name="color_name_character">#f5f5f5</color>
     <color name="color_background_recycler">#6F6E6E</color>
+    <color name="color_fontTitles_recycler">#FFC107</color>
+    <color name="background_toolbar">#CE0134A0</color>
 </resources>
