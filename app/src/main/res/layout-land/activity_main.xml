@@ -8,15 +8,12 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".presentation.MainActivity">
 
-    <android.support.v7.widget.Toolbar
+    <include
+        layout="@layout/toolbar_layout"
         android:id="@+id/toolbar"
-        style="@style/ToolbarLandscapeStyle"
+        style="@style/ToolbarStyle"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_size_heigth"
-        app:logo="@mipmap/ic_marvel"
-        app:navigationIcon="@drawable/ic_exit_to_app_black_24dp"
-        app:title="@string/app_name"
-        app:titleTextColor="@color/color_fontTitles_recycler" />
+        android:layout_height="wrap_content"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

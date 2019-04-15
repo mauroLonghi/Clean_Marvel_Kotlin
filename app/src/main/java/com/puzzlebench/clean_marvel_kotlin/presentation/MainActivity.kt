@@ -13,6 +13,7 @@ import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter.CharacterP
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterView
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar_layout.*
 
 open class MainActivity : BaseRxActivity() {
 
@@ -32,13 +33,9 @@ open class MainActivity : BaseRxActivity() {
         button_service.setOnClickListener {
             presenter.localGetCharacters()
         }
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onSupportNavigateUp()
+        button_exit.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     override fun onDestroy() {

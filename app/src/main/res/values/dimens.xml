@@ -26,6 +26,9 @@
     <dimen name="text_size_toolbar">50sp</dimen>
     <dimen name="text_size_toolbar_landscape">70sp</dimen>
     <dimen name="toolbar_size_heigth">60dp</dimen>
-    <dimen name="recycler_margiTop">60dp</dimen>
+    <dimen name="recycler_margiTop">70dp</dimen>
     <dimen name="landscape_margin_width">300dp</dimen>
+    <dimen name="image_toolbar_width">70dp</dimen>
+    <dimen name="image_toolbar_heigth">70dp</dimen>
+    <dimen name="padding_toolbar">10dp</dimen>
 </resources>
