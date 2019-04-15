@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
     <style name="TitleStyleView" parent="Theme.AppCompat">
@@ -20,12 +21,11 @@
         <item name="android:fontFamily">@font/font_titles</item>
     </style>
 
-    <style name="ToolbarStyle">
+    <style name="ToolbarStyle" >
         <item name="android:height">?attr/actionBarSize</item>
         <item name="android:background">@color/ic_launcher_background</item>
         <item name="android:textColor">@color/color_fontTitles_recycler</item>
         <item name="android:textSize">@dimen/text_size_toolbar</item>
-        <item name="android:font" tools:targetApi="o">@font/font_titles</item>
         <item name="android:fontFamily">@font/font_titles</item>
     </style>
 
